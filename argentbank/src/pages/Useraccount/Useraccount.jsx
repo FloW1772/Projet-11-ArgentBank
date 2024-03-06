@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 
-const Account = ({ accountData }) => {
-  const [showTransactions, setShowTransactions] = useState(false);
-
-  const handleViewTransactions = () => {
-    setShowTransactions(!showTransactions);
+const Account = ({ accountData, showTransactions, handleViewTransactions }) => {
+  const handleToggleTransactions = () => {
+    handleViewTransactions(accountData.title);
   };
 
   return (
@@ -15,7 +13,7 @@ const Account = ({ accountData }) => {
         <p className="account-amount-description">{accountData.description}</p>
       </div>
       <div className="account-content-wrapper cta">
-        <button className="transaction-button" onClick={handleViewTransactions}>
+        <button className="transaction-button" onClick={handleToggleTransactions}>
           {showTransactions ? 'Hide Transactions' : 'View Transactions'}
         </button>
       </div>
@@ -83,6 +81,12 @@ const App = () => {
     },
   ];
 
+  const [showTransactions, setShowTransactions] = useState(false);
+
+  const handleViewTransactions = (accountTitle) => {
+    setShowTransactions(accountTitle === showTransactions ? false : accountTitle);
+  };
+
   return (
     <main className="main bg-dark">
       <div className="header">
@@ -91,7 +95,12 @@ const App = () => {
       </div>
       <h2 className="sr-only">Accounts</h2>
       {accountsData.map((account) => (
-        <Account key={account.title} accountData={account} />
+        <Account
+          key={account.title}
+          accountData={account}
+          showTransactions={account.title === showTransactions}
+          handleViewTransactions={handleViewTransactions}
+        />
       ))}
     </main>
   );
