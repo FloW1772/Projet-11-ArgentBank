@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Connexion() {
+export function ConnectPage() {
   return (
     <main className="main bg-dark">
       <section className="sign-in-content">
@@ -26,4 +26,4 @@ function Connexion() {
   );
 }
 
-ReactDOM.render(<Connexion />, document.getElementById("root"));
+// ReactDOM.render(<Connexion />, document.getElementById("root"));

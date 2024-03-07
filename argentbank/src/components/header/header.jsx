@@ -1,5 +1,4 @@
-var MyClass = React.createClass({
-  render: function() {
+export function Header() {
     return (
       <div>
         <meta charSet="UTF-8" />
@@ -22,4 +21,3 @@ var MyClass = React.createClass({
       </div>
     );
   }
-});

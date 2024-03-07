@@ -1,5 +1,5 @@
-var MyClass = React.createClass({
-    render: function() {
+
+export function Home() {
       return (
   
         <main>
@@ -41,4 +41,4 @@ var MyClass = React.createClass({
         </main>
       );
     }
-  });
+  
