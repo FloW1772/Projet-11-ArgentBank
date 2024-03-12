@@ -6,7 +6,7 @@
 //   )
 // }
 import React from 'react';
-import './App.scss';
+import './useraccount.scss'
 
 const accountData = [
   { type: 'Checking', accountNumber: 'x8349', balance: 2082.79 },
