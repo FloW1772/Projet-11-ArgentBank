@@ -1,0 +1,21 @@
+$font-family: Arial, sans-serif;
+$copyright-text-color: #666;
+$copyright-text-size: 12px;
+
+.footer-text-container {
+  text-align: center;
+  margin-top: 20px;
+
+  .footer-text {
+    font-family: $font-family;
+    color: $copyright-text-color;
+    font-size: $copyright-text-size;
+  }
+}
+
+.footer-text {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}

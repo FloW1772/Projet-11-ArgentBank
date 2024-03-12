@@ -24,6 +24,7 @@ export function ConnectPage() {
       </section>
     </main>
   );
+  
 }
 
 // ReactDOM.render(<Connexion />, document.getElementById("root"));

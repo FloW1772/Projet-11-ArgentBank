@@ -27,6 +27,7 @@ const Account = ({ accountData, showTransactions, handleViewTransactions }) => {
             </li>
           ))}
         </ul>
+        
       )}
     </section>
   );
