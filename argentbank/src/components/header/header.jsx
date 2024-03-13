@@ -1,27 +1,33 @@
 import React from 'react';
 import './header.scss';
-import '../../assets/img/argentBankLogo.png'
+import argentBankLogo from '../../assets/img/argentBankLogo.png';
+import { Link } from 'react-router-dom';
 
 
 export function Header() {
     return (
       <div>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Argent Bank - Home Page</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
         <nav className="main-nav">
           <a className="main-nav-logo" href="./index.html">
-            <img className="main-nav-logo-image" src="./img/argentBankLogo.png" alt="Argent Bank Logo" />
+            <Link to="/" >
+            <img className="main-nav-logo-image" src={argentBankLogo} alt="Argent Bank Logo" />
+            </Link>
             <h1 className="sr-only">Argent Bank</h1>
           </a>
           <div>
-            <a className="main-nav-item" href="./sign-in.html">
+            <Link className="main-nav-item" to="/connect-page">
               <i className="fa fa-user-circle" />
               Sign In
-            </a>
+            </Link>
           </div>
         </nav>
       </div>
     );
   }
+  // return (
+  //   <div className="sign-in">
+  //     <h1>ARGENTBANK</h1>
+  //     <button>Sign In</button>
+  //   </div>
+  // );

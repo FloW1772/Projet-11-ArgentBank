@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import { Home } from './pages/Home/Home';
 import { ConnectPage } from './pages/ConnectPage/ConnectPage';
@@ -12,8 +12,8 @@ function App() {
     <Header/>
     <Routes>
     <Route path="/" element={<Home />} />
-    <Route path="/" element={<ConnectPage />} />
-    <Route path="/" element={<Useraccount/>} />
+    <Route path="/connect-page" element={<ConnectPage />} />
+    <Route path="/user-account" element={<Useraccount/>} />
 
     </Routes>
     <Footer/>
