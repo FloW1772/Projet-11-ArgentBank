@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 const Account = ({ accountData }) => {
   const [showTransactions, setShowTransactions] = useState(false);

@@ -1,5 +1,7 @@
 import React from 'react';
 import './Connectpage.scss'
+import { useSelector, useDispatch } from 'react-redux';
+
 
 export function ConnectPage() {
   return (
@@ -24,8 +26,5 @@ export function ConnectPage() {
         </form>
       </section>
     </main>
-  );
-  
+  );  
 }
-
-// ReactDOM.render(<Connexion />, document.getElementById("root"));

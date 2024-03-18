@@ -6,7 +6,9 @@
 //   )
 // }
 import React from 'react';
-import './useraccount.scss'
+import './useraccount.scss';
+import { useSelector, useDispatch } from 'react-redux';
+
 
 const accountData = [
   { type: 'Checking', accountNumber: 'x8349', balance: 2082.79 },
