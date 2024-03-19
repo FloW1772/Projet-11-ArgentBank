@@ -1,7 +1,7 @@
 import React from 'react';
 import './Connectpage.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import { setUsername, updateLoginStatus } from '../store'; // Adjust path as needed
+// import { setUsername, updateLoginStatus } from '../store'; // Adjust path as needed
 
 export function ConnectPage() {
   const dispatch = useDispatch();
