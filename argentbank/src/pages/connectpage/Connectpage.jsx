@@ -42,7 +42,7 @@ export function ConnectPage() {
       setError('Tous les champs sont obligatoires');
       return;
     }
-
+  
     try {
       // Remplacez cette promesse par votre logique d'authentification
       const response = await fetch('https://api.swagger.io/login', {
@@ -50,20 +50,19 @@ export function ConnectPage() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ username, password }), // Utilisez ici la valeur de l'état username
       });
-
+  
       if (!response.ok) {
         throw new Error('Erreur lors de la connexion');
       }
-
+  
       // Redirigez l'utilisateur vers la page d'accueil ou vers le profil
       window.location.href = '/';
     } catch (error) {
       setError(error.message);
     }
   };
-
   return (
     <main className="main bg-dark">
       <section className="sign-in-content">
