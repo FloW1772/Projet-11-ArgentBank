@@ -26,14 +26,22 @@
 //     </main>
 //   );  
 // }
-
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import './Connectpage.scss';
 
 export function ConnectPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const dispatch = useDispatch();
+
+  const LOGIN = 'LOGIN';
+
+  const loginAction = (token) => ({
+    type: LOGIN,
+    payload: token,
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -53,19 +61,14 @@ export function ConnectPage() {
       });
 
       if (response.ok) {
-        // Traitement en cas de succès (e.g., store token in state)
-       await response.json();
-        // dispatch(login(data.token)); // Assuming Redux usage
-        // const data = 
-        // Redirect to home or profile page
+        const token = await response.json();
+        dispatch(loginAction(token));
         window.location.href = '/';
       } else {
-        // Traitement en cas d'erreur
         const error = await response.json();
         setError(error.message);
       }
     } catch (error) {
-      // Network or other error
       setError(error.message);
     }
   };
