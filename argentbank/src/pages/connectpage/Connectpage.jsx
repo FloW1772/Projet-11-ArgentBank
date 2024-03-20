@@ -42,33 +42,41 @@ export function ConnectPage() {
       setError('Tous les champs sont obligatoires');
       return;
     }
-  
+
     try {
-      // Remplacez cette promesse par votre logique d'authentification
       const response = await fetch('https://api.swagger.io/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, password }), // Utilisez ici la valeur de l'état username
+        body: JSON.stringify({ username, password }),
       });
-  
-      if (!response.ok) {
-        throw new Error('Erreur lors de la connexion');
+
+      if (response.ok) {
+        // Traitement en cas de succès (e.g., store token in state)
+       await response.json();
+        // dispatch(login(data.token)); // Assuming Redux usage
+        // const data = 
+        // Redirect to home or profile page
+        window.location.href = '/';
+      } else {
+        // Traitement en cas d'erreur
+        const error = await response.json();
+        setError(error.message);
       }
-  
-      // Redirigez l'utilisateur vers la page d'accueil ou vers le profil
-      window.location.href = '/';
     } catch (error) {
+      // Network or other error
       setError(error.message);
     }
   };
+
   return (
     <main className="main bg-dark">
       <section className="sign-in-content">
         <i className="fa fa-user-circle sign-in-icon" />
         <h1>Sign In</h1>
         <form onSubmit={handleSubmit}>
+          {error && <p className="error error-top">{error}</p>}
           <div className="input-wrapper">
             <label htmlFor="username">Username</label>
             <input
@@ -93,6 +101,6 @@ export function ConnectPage() {
       </section>
     </main>
   );
-};
+}
 
 export default ConnectPage;
