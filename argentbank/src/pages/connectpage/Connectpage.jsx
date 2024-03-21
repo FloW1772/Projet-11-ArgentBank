@@ -99,7 +99,7 @@ export function ConnectPage() {
             />
           </div>
           {error && <p className="error">{error}</p>}
-          <button type="submit">Sign In</button>
+          <button type="submit" className="sign-in-button">Sign In</button>
         </form>
       </section>
     </main>
