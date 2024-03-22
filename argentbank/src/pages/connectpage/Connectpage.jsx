@@ -52,7 +52,7 @@ export function ConnectPage() {
     }
 
     try {
-      const response = await fetch('https://api.swagger.io/login', {
+      const response = await fetch('http://localhost:3001/api/v1/user/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
