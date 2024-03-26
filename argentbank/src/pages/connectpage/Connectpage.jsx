@@ -29,41 +29,44 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import './Connectpage.scss';
+import { useNavigate } from 'react-router-dom';
+import { login } from '../../redux-toolkit/reducers/authSlice';
 
 export function ConnectPage() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const LOGIN = 'LOGIN';
+  // const LOGIN = 'LOGIN';
 
-  const loginAction = (token) => ({
-    type: LOGIN,
-    payload: token,
-  });
+  // const loginAction = (token) => ({
+  //   type: LOGIN,
+  //   payload: token,
+  // });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!username || !password) {
+    if (!email || !password) {
       setError('Tous les champs sont obligatoires');
       return;
     }
-
+// debugger
     try {
       const response = await fetch('http://localhost:3001/api/v1/user/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ email, password }),
       });
 
       if (response.ok) {
         const token = await response.json();
-        dispatch(loginAction(token));
-        window.location.href = '/';
+        dispatch(login({token}));
+        navigate("/user-account")
       } else {
         const error = await response.json();
         setError(error.message);
@@ -85,8 +88,8 @@ export function ConnectPage() {
             <input
               type="text"
               id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="input-wrapper">

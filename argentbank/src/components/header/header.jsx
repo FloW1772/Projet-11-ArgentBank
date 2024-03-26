@@ -2,9 +2,11 @@ import React from 'react';
 import './header.scss';
 import argentBankLogo from '../../assets/img/argentBankLogo.png';
 import { Link } from 'react-router-dom';
+import { useDispatch,useSelector } from 'react-redux';
 
 
 export function Header() {
+  const token = useSelector ((state)=>state.auth.token)
     return (
       <div>
         <title>Argent Bank - Home Page</title>
@@ -16,10 +18,17 @@ export function Header() {
             <h1 className="sr-only">Argent Bank</h1>
           </a>
           <div>
-            <Link className="main-nav-item" to="/connect-page">
+            {token?(
+              <>
+              <p>je suis connecté</p>
+              </>
+            ):(
+              <Link className="main-nav-item" to="/connect-page">
               <i className="fa fa-user-circle" />
               Sign In
             </Link>
+            )}
+           
           </div>
         </nav>
       </div>
