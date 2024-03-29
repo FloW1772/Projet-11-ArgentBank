@@ -64,15 +64,15 @@ export function Header() {
               <p>
                 Bienvenue, <span className="main-nav-username">{username}</span>
               </p>
-              <Link className="main-nav-item" to="/deconnexion-page">
+              <Link className="main-nav-item" to="/">
                 <i className="fa fa-sign-out" />
-                Se déconnecter
+                Sign Out
               </Link>
             </>
           ) : (
-            <Link className="main-nav-item" to="/connexion-page">
+            <Link className="main-nav-item" to="/connect-page">
               <i className="fa fa-user-circle" />
-              Se connecter
+            Sign In
             </Link>
           )}
         </div>
