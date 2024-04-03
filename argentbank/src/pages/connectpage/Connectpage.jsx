@@ -28,8 +28,10 @@ export function ConnectPage() {
       });
 
       if (response.ok) {
-        const token = await response.json();
+        const responseJson = await response.json();
+        const token = responseJson.body.token
         dispatch(login({token}));
+
         navigate("/user-account")
       } else {
         const error = await response.json();

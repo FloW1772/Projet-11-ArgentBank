@@ -39,10 +39,16 @@ import './header.scss';
 import argentBankLogo from '../../assets/img/argentBankLogo.png';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { logout } from '../../redux-toolkit/reducers/authSlice';
+
 
 export function Header() {
   const token = useSelector((state) => state.auth.token);
   const username = useSelector((state) => state.auth.username);
+  const [email, setEmail] = useState('');
+  const dispatch= useDispatch()
+
 
   return (
     <div>
@@ -62,9 +68,11 @@ export function Header() {
           {token ? (
             <>
               <p>
-                Bienvenue, <span className="main-nav-username">{username}</span>
+              {username} <span className="main-nav-username"></span>
               </p>
-              <Link className="main-nav-item" to="/">
+              <Link onClick={()=>{
+                dispatch(logout())
+              }}  className="main-nav-item" to="/">
                 <i className="fa fa-sign-out" />
                 Sign Out
               </Link>
