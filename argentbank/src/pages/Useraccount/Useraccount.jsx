@@ -105,8 +105,8 @@ function App() {
           {isEditing ? (
             <form className="user-edit-form" onSubmit={handleSubmit}>
               <input type="text" value={userName} placeholder="Surnom" onChange={handleChangeUserName} />
-              <input type="text" value={firstName} placeholder="Prénom" onChange={handleChangeFirstName} />
-              <input type="text" value={lastName} placeholder="Nom" onChange={handleChangeLastName} />
+              <input type="text" value={firstName} placeholder="Prénom" className="non-cliquable" onChange={handleChangeFirstName} />
+              <input type="text" value={lastName} placeholder="Nom" className="non-cliquable" onChange={handleChangeLastName} />
               <button type="submit">Enregistrer</button>
               <button type="button" onClick={() => setIsEditing(false)}>Annuler</button>
             </form>
