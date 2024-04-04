@@ -13,7 +13,6 @@ export function Header() {
   const [email, setEmail] = useState('');
   const dispatch= useDispatch()
 
-
   return (
     <div>
       <title>Argent Bank - Home Page</title>

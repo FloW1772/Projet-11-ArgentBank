@@ -101,6 +101,118 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
+  /transaction/transfer:
+    post:
+      tags:
+        - Transaction Module
+      summary: Transfer Money
+      description: API for transferring money between two accounts
+      parameters:
+        - in: body
+          name: body
+          description: Transfer Payload
+          required: true
+          schema:
+            $ref: '#/definitions/TransferPayload'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transfer Successful
+          schema:
+            $ref: '#/definitions/TransferSuccessResponse'
+        '400':
+          description: Invalid Fields or Insufficient Balance
+        '500':
+          description: Internal Server Error
+  /transaction/all/{month}:
+    get:
+      tags:
+        - Transaction Module
+      summary: View All Transactions
+      description: API to view all transactions for the current month, grouped by account
+      parameters:
+        - in: path
+          name: month
+          description: Month for which transactions are to be retrieved
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transactions retrieved successfully
+          schema:
+            $ref: '#/definitions/AllTransactionsResponse'
+        '500':
+          description: Internal Server Error
+  /transaction/details/{transactionId}:
+    get:
+      tags:
+        - Transaction Module
+      summary: View Transaction Details
+      description: API to view details of a transaction
+      parameters:
+        - in: path
+          name: transactionId
+          description: ID of the transaction to view details
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transaction details retrieved successfully
+          schema:
+            $ref: '#/definitions/TransactionDetailsResponse'
+        '500':
+          description: Internal Server Error
+    post:
+      tags:
+        - Transaction Module
+      summary: Update Transaction Details
+      description: API to update details of a transaction
+      parameters:
+        - in: path
+          name: transactionId
+          description: ID of the transaction to update details
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Updated transaction details payload
+          required: true
+          schema:
+            $ref: '#/definitions/UpdateTransactionPayload'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transaction details updated successfully
+          schema:
+            $ref: '#/definitions/TransactionDetailsResponse'
+        '500':
+          description: Internal Server Error
+    delete:
+      tags:
+        - Transaction Module
+      summary: Delete Transaction Details
+      description: API to delete details of a transaction
+      parameters:
+        - in: path
+          name: transactionId
+          description: ID of the transaction to delete details
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transaction details deleted successfully
+          schema:
+            $ref: '#/definitions/DeleteTransactionResponse'
+        '500':
+          description: Internal Server Error
 securityDefinitions:
   Bearer:
     type: apiKey
@@ -156,3 +268,72 @@ definitions:
     properties:
       userName:
         type: string
+  TransferPayload:
+    type: object
+    properties:
+      senderAccountId:
+        type: string
+        description: Identifier of the sender account
+      recipientAccountId:
+        type: string
+        description: Identifier of the recipient account
+      amount:
+        type: number
+        description: Amount to transfer
+      description:
+        type: string
+        description: Optional transaction description
+  TransferSuccessResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: object
+        properties:
+          transactionId:
+            type: string
+  AllTransactionsResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: array
+        items:
+          type: object
+          properties:
+            accountId:
+              type: string
+            transactions:
+              type: array
+              items:
+                # Define transaction properties here
+  TransactionDetailsResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        type: object
+        # Define transaction details properties here
+  UpdateTransactionPayload:
+    type: object
+    properties:
+      description:
+        type: string
+        description: New transaction description
+  DeleteTransactionResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body: null
