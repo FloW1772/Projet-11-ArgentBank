@@ -57,7 +57,7 @@ function App() {
   };
 
   return (
-    <main className="main bg-dark">
+    <main className="main bg-dark-new">
       <section className="header">
         <h1>
           Bienvenue <br />
