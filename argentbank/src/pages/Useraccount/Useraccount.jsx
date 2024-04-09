@@ -32,18 +32,6 @@ function App() {
     getUserAccount();
   }, []);
 
-  // const handleChangeUserName = (event) => {
-  //   setNewUserName(event.target.value);
-  // };
-
-  // const handleChangeFirstName = (event) => {
-  //   setFirstName(event.target.value);
-  // };
-
-  // const handleChangeLastName = (event) => {
-  //   setLastName(event.target.value);
-  // };
-
   const handleSubmit = async (event, newUserName) => {
     console.log(userName)
     console.log(newUserName)
@@ -65,7 +53,6 @@ function App() {
       setIsEditing(false);
     } catch (error) {
       console.error(error);
-      // Handle errors appropriately, e.g., display an error message to the user
     }
   };
 
