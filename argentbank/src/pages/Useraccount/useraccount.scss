@@ -1,138 +1,142 @@
 .App {
-    font-family: sans-serif;
-    text-align: center;
-    width: 80%;
-    margin: 0 auto;
-  
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
+  font-family: sans-serif;
+  text-align: center;
+  width: 80%;
+  margin: 0 auto;
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin-bottom: 0.5rem;
     }
-  
-    ul {
-      list-style: none;
-      padding: 0;
-  
-      li {
-        margin-bottom: 0.5rem;
-      }
+  }
+}
+
+.user-edit-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+
+  input {
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+      border-color: #999;
     }
   }
 
-  .user-edit-form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #fff;
-  
-    input {
-      margin-bottom: 10px;
-      padding: 5px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      width: 100%;
-  
-      &:focus {
-        outline: none;
-        border-color: #999;
-      }
+  button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #eee;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #ddd;
     }
-  
-    button {
-      margin-top: 10px;
-      padding: 5px 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      background-color: #eee;
-      cursor: pointer;
-  
-      &:hover {
-        background-color: #ddd;
-      }
-  
-      &.cancel-button {
-        margin-left: 10px;
-        background-color: #f99;
-      }
+
+    &.cancel-button {
+      margin-left: 10px;
+      background-color: #f99;
     }
   }
-  .non-cliquable {
-    pointer-events: none;
-    background-color: #8b8484;
-  }
-  
-  .bg-dark-new {
-    background-color: #12002b;
-    padding: 5vh; /* Padding de 10px sur tous les côtés */
-  }
+}
+
+.non-cliquable {
+  pointer-events: none;
+  background-color: #8b8484;
+}
+
+.bg-dark-new {
+  background-color: #12002b;
+  padding: 5vh;
+}
+
+.account {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid black;
+  background-color: #fff;
+  width: 80%;
+  margin: 0 auto;
+  flex-direction: column;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  text-align: left;
+  margin-bottom: 2rem;
+  margin-top: 2%;
+}
+
+.account-amount {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.account-amount-description {
+  margin: 0;
+}
+
+.account-title {
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.account-content-wrapper {
+  width: 100%;
+  flex: 1;
+}
+
+.edit-button {
+  border-color: #00bc77;
+  background-color: #00bc77;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.transaction-button {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  border-color: #00bc77;
+  background-color: #00bc77;
+  color: #fff;
+}
+
+@media (min-width: 720px) {
   .account {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid black;
-    background-color: #fff;
-    width: 80%;
-    margin: 0 auto;
-    flex-direction: column;
-    padding: 1.5rem;
-    box-sizing: border-box;
-    text-align: left;
-    margin-bottom: 2rem;
+    flex-direction: row;
   }
-  .account-amount {
-    margin: 0;
-    font-size: 2.5rem;
-    font-weight: bold;
+
+  .account-content-wrapper.cta {
+    flex: 0;
   }
-  
-  .account-amount-description {
-    margin: 0;
-  }
-  
-  .account-title {
-    margin: 0;
-    padding: 0;
-    font-size: 1rem;
-    font-weight: normal;
-  }
-  
-  .account-content-wrapper {
-    width: 100%;
-    flex: 1;
-  }
-  
-  .edit-button {
-    border-color: #00bc77;
-    background-color: #00bc77;
-    color: #fff;
-    font-weight: bold;
-    padding: 10px;
-  }
+
   .transaction-button {
-    display: block;
-    width: 100%;
-    padding: 8px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin-top: 1rem;
-    border-color: #00bc77;
-    background-color: #00bc77;
-    color: #fff;
+    width: 200px;
   }
-  
-  @media (min-width: 720px) {
-    .account {
-      flex-direction: row;
-    }
-  
-    .account-content-wrapper.cta {
-      flex: 0;
-    }
-  
-    .transaction-button {
-      width: 200px;
-    }
-  }
-        
+}

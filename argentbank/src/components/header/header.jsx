@@ -11,7 +11,7 @@ export function Header() {
   const token = useSelector((state) => state.auth.token);
   const userName = useSelector((state) => state.profile);
   const [email, setEmail] = useState('');
-  const dispatch= useDispatch()
+  const dispatch = useDispatch()
 
   return (
     <div>
@@ -33,20 +33,20 @@ export function Header() {
               <p class="paragraphe-personnalise">
                 {console.log(userName)}
                 <i className="fa fa-user-circle sign-in-icon" />
-              {userName.userName ? userName.userName : userName.firstName} <span className="main-nav-username"></span>
-              <Link onClick={()=>{
-                dispatch(logout())
-              }}  className="main-nav-item" to="/">
-                <i className="fa fa-sign-out" />
-                Sign Out
-              </Link>
+                {userName.userName ? userName.userName : userName.firstName} <span className="main-nav-username"></span>
+                <Link onClick={() => {
+                  dispatch(logout())
+                }} className="main-nav-item" to="/">
+                  <i className="fa fa-sign-out" />
+                  Sign Out
+                </Link>
               </p>
 
             </>
           ) : (
             <Link className="main-nav-item" to="/connect-page">
               <i className="fa fa-user-circle" />
-            Sign In
+              Sign In
             </Link>
           )}
         </div>

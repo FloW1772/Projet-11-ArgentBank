@@ -13,7 +13,7 @@ export const profileSlice = createSlice({
   name: "profile",
   initialState,
   reducers: {
-    addUserDatas:(state, action) =>{
+    addUserDatas: (state, action) => {
       state.email = action.payload.email
       state.firstName = action.payload.firstName
       state.lastName = action.payload.lastName
@@ -22,7 +22,7 @@ export const profileSlice = createSlice({
     editUserName: (state, action) => {
       state.userName = action.payload;
     },
-    deleteUserDatas:(state, action) =>{
+    deleteUserDatas: (state, action) => {
       state.email = ""
       state.firstName = ""
       state.lastName = ""

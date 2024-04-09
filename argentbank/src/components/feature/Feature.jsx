@@ -1,7 +1,7 @@
 import React from 'react'
 import './feature.scss'
 
-export default function Feature({featureImg,featureTitle,featureText}) {
+export default function Feature({ featureImg, featureTitle, featureText }) {
     return (
         <div className="feature-item">
             <img src={featureImg} alt="Icon" className="feature-icon" />
@@ -10,5 +10,5 @@ export default function Feature({featureImg,featureTitle,featureText}) {
                 {featureText}
             </p>
         </div>
-        )
+    )
 }

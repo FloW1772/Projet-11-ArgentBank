@@ -40,11 +40,11 @@ function App() {
       const response = await fetch('http://localhost:3001/api/v1/user/profile', {
         method: 'PUT',
         headers: {
-          'Content-Type':'application/json',
+          'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
-          userName:newUserName,
+          userName: newUserName,
         })
       });
       const updatedUserData = await response.json();
@@ -62,9 +62,9 @@ function App() {
         <h1>
           Bienvenue <br />
           {isEditing ? (
-            <form className="user-edit-form" onSubmit={(e)=>handleSubmit(e,newUserName)}>
-              <input type="text" value={newUserName} placeholder="Surnom" onChange={(e)=>setNewUserName(e.target.value)} />
-              <input type="text" value={firstName} placeholder="Prénom" className="non-cliquable"  readOnly={true} />
+            <form className="user-edit-form" onSubmit={(e) => handleSubmit(e, newUserName)}>
+              <input type="text" value={newUserName} placeholder="Surnom" onChange={(e) => setNewUserName(e.target.value)} />
+              <input type="text" value={firstName} placeholder="Prénom" className="non-cliquable" readOnly={true} />
               <input type="text" value={lastName} placeholder="Nom" className="non-cliquable" readOnly={true} />
               <button type="submit">Enregistrer</button>
               <button type="button" onClick={() => setIsEditing(false)}>Annuler</button>

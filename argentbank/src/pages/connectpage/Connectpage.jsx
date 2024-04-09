@@ -30,7 +30,7 @@ export function ConnectPage() {
       if (response.ok) {
         const responseJson = await response.json();
         const token = responseJson.body.token
-        dispatch(login({token}));
+        dispatch(login({ token }));
 
         navigate("/user-account")
       } else {
