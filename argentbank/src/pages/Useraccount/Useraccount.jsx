@@ -1,50 +1,18 @@
-// import React, { useEffect } from 'react';
-// import './useraccount.scss';
-// import { useDispatch, useSelector } from 'react-redux';
-// import {addUserDatas} from '../../redux-toolkit/reducers/profileSlice'
-
-// function App() {
-//   const token = useSelector((state)=>state.auth.token)
-//   const dispatch = useDispatch()
-//   const userDatas = useSelector((state)=>state.profile)
-//   useEffect(()=>{
-//     const getUserAccount=async()=>{
-//       console.log(token)
-//       try{
-//         const response = await fetch('http://localhost:3001/api/v1/user/profile',{
-//           method : 'POST',
-//           headers : {
-//             'Authorization':`Bearer ${token}`
-//           }
-//         })
-//         const userAccountJson= await response.json()
-//         dispatch(addUserDatas(userAccountJson.body))
-//       }catch(error){
-//         console.log(error);
-//       }
-
-//     }
-//     getUserAccount()
-//   })
-//   return (
-//     <main className="main bg-dark">
-//       <header className="header">{console.log(userDatas)}
-//         <h1>Bienvenue <br />{userDatas.firstName} {userDatas.lastName} !</h1>
-//         <button className="edit-button">Modifier le nom</button>
-//       </header>
 import React, { useEffect, useState } from 'react';
 import './useraccount.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { addUserDatas } from '../../redux-toolkit/reducers/profileSlice';
+import { editUserName, addUserDatas } from '../../redux-toolkit/reducers/profileSlice';
 
 function App() {
   const token = useSelector((state) => state.auth.token);
   const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
   const [userName, setUserName] = useState(useSelector((state) => state.profile.userName));
-  const [firstName, setFirstName] = useState(useSelector((state) => state.profile.firstName));
-  const [lastName, setLastName] = useState(useSelector((state) => state.profile.lastName));
-
+  // const [firstName, setFirstName] = useState(useSelector((state) => state.profile.firstName));
+  const firstName = useSelector((state) => state.profile.firstName)
+  // const [lastName, setLastName] = useState(useSelector((state) => state.profile.lastName));
+  const lastName = useSelector((state) => state.profile.lastName)
+  const [newUserName, setNewUserName] = useState('')
   useEffect(() => {
     const getUserAccount = async () => {
       try {
@@ -55,6 +23,7 @@ function App() {
           }
         });
         const userAccountJson = await response.json();
+        // console.log(userAccountJson)
         dispatch(addUserDatas(userAccountJson.body));
       } catch (error) {
         console.error(error);
@@ -63,33 +32,36 @@ function App() {
     getUserAccount();
   }, []);
 
-  const handleChangeUserName = (event) => {
-    setUserName(event.target.value);
-  };
+  // const handleChangeUserName = (event) => {
+  //   setNewUserName(event.target.value);
+  // };
 
-  const handleChangeFirstName = (event) => {
-    setFirstName(event.target.value);
-  };
+  // const handleChangeFirstName = (event) => {
+  //   setFirstName(event.target.value);
+  // };
 
-  const handleChangeLastName = (event) => {
-    setLastName(event.target.value);
-  };
+  // const handleChangeLastName = (event) => {
+  //   setLastName(event.target.value);
+  // };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event, newUserName) => {
+    console.log(userName)
+    console.log(newUserName)
     event.preventDefault();
     try {
       const response = await fetch('http://localhost:3001/api/v1/user/profile', {
         method: 'PUT',
         headers: {
+          'Content-Type':'application/json',
           'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
-          firstName,
-          lastName
+          userName:newUserName,
         })
       });
       const updatedUserData = await response.json();
-      dispatch(addUserDatas(updatedUserData.body));
+      console.log(updatedUserData)
+      dispatch(editUserName(updatedUserData.body.userName));
       setIsEditing(false);
     } catch (error) {
       console.error(error);
@@ -99,14 +71,14 @@ function App() {
 
   return (
     <main className="main bg-dark">
-      <header className="header">
+      <section className="header">
         <h1>
           Bienvenue <br />
           {isEditing ? (
-            <form className="user-edit-form" onSubmit={handleSubmit}>
-              <input type="text" value={userName} placeholder="Surnom" onChange={handleChangeUserName} />
-              <input type="text" value={firstName} placeholder="Prénom" className="non-cliquable" onChange={handleChangeFirstName} />
-              <input type="text" value={lastName} placeholder="Nom" className="non-cliquable" onChange={handleChangeLastName} />
+            <form className="user-edit-form" onSubmit={(e)=>handleSubmit(e,newUserName)}>
+              <input type="text" value={newUserName} placeholder="Surnom" onChange={(e)=>setNewUserName(e.target.value)} />
+              <input type="text" value={firstName} placeholder="Prénom" className="non-cliquable"  readOnly={true} />
+              <input type="text" value={lastName} placeholder="Nom" className="non-cliquable" readOnly={true} />
               <button type="submit">Enregistrer</button>
               <button type="button" onClick={() => setIsEditing(false)}>Annuler</button>
             </form>
@@ -115,7 +87,7 @@ function App() {
           )}
         </h1>
         {!isEditing && <button className="edit-button" onClick={() => setIsEditing(true)}>Modifier le nom</button>}
-      </header>
+      </section>
       <h2 className="sr-only">Comptes</h2>
       <section className="account">
         <Compte titre="Argent Bank Chèques (x8349)" montant="$2,082.79" description="Solde disponible" />

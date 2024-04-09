@@ -19,10 +19,16 @@ export const profileSlice = createSlice({
       state.lastName = action.payload.lastName
       state.userName = action.payload.userName
     },
-    setProfile: (state, action) => {
+    editUserName: (state, action) => {
       state.userName = action.payload;
+    },
+    deleteUserDatas:(state, action) =>{
+      state.email = ""
+      state.firstName = ""
+      state.lastName = ""
+      state.userName = ""
     },
   },
 });
 
-export const { addUserDatas, setProfile } = profileSlice.actions;
+export const { addUserDatas, editUserName, deleteUserDatas } = profileSlice.actions;

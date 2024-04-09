@@ -9,7 +9,7 @@ import { logout } from '../../redux-toolkit/reducers/authSlice';
 
 export function Header() {
   const token = useSelector((state) => state.auth.token);
-  const userName = useSelector((state) => state.auth.userName);
+  const userName = useSelector((state) => state.profile);
   const [email, setEmail] = useState('');
   const dispatch= useDispatch()
 
@@ -31,14 +31,16 @@ export function Header() {
           {token ? (
             <>
               <p>
-              {userName} <span className="main-nav-username"></span>
-              </p>
+                {console.log(userName)}
+              {userName.userName ? userName.userName : userName.firstName} <span className="main-nav-username"></span>
               <Link onClick={()=>{
                 dispatch(logout())
               }}  className="main-nav-item" to="/">
                 <i className="fa fa-sign-out" />
                 Sign Out
               </Link>
+              </p>
+
             </>
           ) : (
             <Link className="main-nav-item" to="/connect-page">

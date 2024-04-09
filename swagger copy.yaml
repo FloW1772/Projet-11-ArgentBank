@@ -65,23 +65,23 @@ paths:
         - User Module
       summary: User Profile API
       description: API for fetching a user profile
-      #produces:
-       # - application/json
+      produces:
+        - application/json
       responses:
         '200':
-          description: User profile retrieved successully
+          description: User profile retrieved successfully
           schema:
             $ref: '#/definitions/ApiResponse'
         '400':
           description: Invalid Fields
         '500':
           description: Internal Server Error
-    put:
+    put:   # Ajout de l'opération PUT
       security:
         - Bearer: []
       tags:
         - User Module
-      summary: User Profile API
+      summary: Update User Profile API
       description: API for updating a user profile
       parameters:
         - in: body
@@ -94,35 +94,11 @@ paths:
         - application/json
       responses:
         '200':
-          description: User profile retrieved successully
+          description: User profile updated successfully
           schema:
             $ref: '#/definitions/ApiResponse'
         '400':
           description: Invalid Fields
-        '500':
-          description: Internal Server Error
-  /transaction/transfer:
-    post:
-      tags:
-        - Transaction Module
-      summary: Transfer Money
-      description: API for transferring money between two accounts
-      parameters:
-        - in: body
-          name: body
-          description: Transfer Payload
-          required: true
-          schema:
-            $ref: '#/definitions/TransferPayload'
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: Transfer Successful
-          schema:
-            $ref: '#/definitions/TransferSuccessResponse'
-        '400':
-          description: Invalid Fields or Insufficient Balance
         '500':
           description: Internal Server Error
   /transaction/all/{month}:
@@ -135,6 +111,11 @@ paths:
         - in: path
           name: month
           description: Month for which transactions are to be retrieved
+          required: true
+          type: string
+        - in: query   # Modification du paramètre pour récupérer l'identifiant du compte
+          name: accountId
+          description: Identifier of the account
           required: true
           type: string
       produces:
@@ -167,7 +148,7 @@ paths:
             $ref: '#/definitions/TransactionDetailsResponse'
         '500':
           description: Internal Server Error
-    post:
+    put:   # Ajout de l'opération PUT
       tags:
         - Transaction Module
       summary: Update Transaction Details
@@ -268,33 +249,11 @@ definitions:
     properties:
       userName:
         type: string
-  TransferPayload:
+  UpdateTransactionPayload:
     type: object
     properties:
-      senderAccountId:
-        type: string
-        description: Identifier of the sender account
-      recipientAccountId:
-        type: string
-        description: Identifier of the recipient account
-      amount:
-        type: number
-        description: Amount to transfer
       description:
         type: string
-        description: Optional transaction description
-  TransferSuccessResponse:
-    type: object
-    properties:
-      status:
-        type: integer
-      message:
-        type: string
-      body:
-        type: object
-        properties:
-          transactionId:
-            type: string
   AllTransactionsResponse:
     type: object
     properties:
@@ -311,8 +270,7 @@ definitions:
               type: string
             transactions:
               type: array
-              items:
-                # Define transaction properties here
+              items: {}
   TransactionDetailsResponse:
     type: object
     properties:
@@ -322,13 +280,6 @@ definitions:
         type: string
       body:
         type: object
-        # Define transaction details properties here
-  UpdateTransactionPayload:
-    type: object
-    properties:
-      description:
-        type: string
-        description: New transaction description
   DeleteTransactionResponse:
     type: object
     properties:
@@ -336,4 +287,5 @@ definitions:
         type: integer
       message:
         type: string
-      body: null
+      body:
+        type: null
