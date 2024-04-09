@@ -30,7 +30,7 @@ export function Header() {
         <div>
           {token ? (
             <>
-              <p>
+              <p class="paragraphe-personnalise">
                 {console.log(userName)}
                 <i className="fa fa-user-circle sign-in-icon" />
               {userName.userName ? userName.userName : userName.firstName} <span className="main-nav-username"></span>
