@@ -8,9 +8,7 @@ function App() {
   const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
   const [userName, setUserName] = useState(useSelector((state) => state.profile.userName));
-  // const [firstName, setFirstName] = useState(useSelector((state) => state.profile.firstName));
   const firstName = useSelector((state) => state.profile.firstName)
-  // const [lastName, setLastName] = useState(useSelector((state) => state.profile.lastName));
   const lastName = useSelector((state) => state.profile.lastName)
   const [newUserName, setNewUserName] = useState('')
   useEffect(() => {
@@ -60,7 +58,7 @@ function App() {
     <main className="main bg-dark-new">
       <section className="header">
         <h1>
-          Bienvenue <br />
+        Welcome back <br />
           {isEditing ? (
             <form className="user-edit-form" onSubmit={(e) => handleSubmit(e, newUserName)}>
               <input type="text" value={newUserName} placeholder="Surnom" onChange={(e) => setNewUserName(e.target.value)} />
@@ -70,23 +68,23 @@ function App() {
               <button type="button" onClick={() => setIsEditing(false)}>Annuler</button>
             </form>
           ) : (
-            <span>{firstName} {lastName}</span>
+            <span>{firstName} {lastName}!</span>
           )}
         </h1>
-        {!isEditing && <button className="edit-button" onClick={() => setIsEditing(true)}>Modifier le nom</button>}
+        {!isEditing && <button className="edit-button" onClick={() => setIsEditing(true)}>Edit Name</button>}
       </section>
       <h2 className="sr-only">Comptes</h2>
       <section className="account">
-        <Compte titre="Argent Bank Chèques (x8349)" montant="$2,082.79" description="Solde disponible" />
-        <button className="transaction-button">Voir les transactions</button>
+        <Compte titre="Argent Bank Checking (x8349)" montant="$2,082.79" description="Available Balance" />
+        <button className="transaction-button">View Transactions</button>
       </section>
       <section className="account">
-        <Compte titre="Argent Bank Épargne (x6712)" montant="$10,928.42" description="Solde disponible" />
-        <button className="transaction-button">Voir les transactions</button>
+        <Compte titre="Argent Bank Savings (x6712)" montant="$10,928.42" description="Available Balance" />
+        <button className="transaction-button">View Transactions</button>
       </section>
       <section className="account">
-        <Compte titre="Carte de crédit Argent Bank (x8349)" montant="$184.30" description="Solde actuel" />
-        <button className="transaction-button">Voir les transactions</button>
+        <Compte titre="Argent Bank Credit Card (x8349)" montant="$184.30" description="Current Balance" />
+        <button className="transaction-button">View Transactions</button>
       </section>
     </main>
   );
