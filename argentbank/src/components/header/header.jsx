@@ -32,6 +32,7 @@ export function Header() {
             <>
               <p>
                 {console.log(userName)}
+                <i className="fa fa-user-circle sign-in-icon" />
               {userName.userName ? userName.userName : userName.firstName} <span className="main-nav-username"></span>
               <Link onClick={()=>{
                 dispatch(logout())
