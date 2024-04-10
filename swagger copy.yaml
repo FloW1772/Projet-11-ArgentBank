@@ -288,4 +288,4 @@ definitions:
       message:
         type: string
       body:
-        type: null
+        type: string
