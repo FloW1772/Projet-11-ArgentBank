@@ -17,8 +17,7 @@ export function Header() {
     <div>
       <title>Argent Bank - Home Page</title>
       <nav className="main-nav">
-        <a className="main-nav-logo" href="./index.html">
-          <Link to="/">
+          <Link className="main-nav-logo" href="./index.html" to="/">
             <img
               className="main-nav-logo-image"
               src={argentBankLogo}
@@ -26,11 +25,10 @@ export function Header() {
             />
           </Link>
           <h1 className="sr-only">Argent Bank</h1>
-        </a>
         <div>
           {token ? (
             <>
-              <p class="paragraphe-personnalise">
+              <p className="paragraphe-personnalise">
                 {console.log(userName)}
                 <i className="fa fa-user-circle sign-in-icon" />
                 {userName.userName ? userName.userName : userName.firstName} <span className="main-nav-username"></span>

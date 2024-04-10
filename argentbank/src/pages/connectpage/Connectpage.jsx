@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import './Connectpage.scss';
+import './connectpage.scss';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../redux-toolkit/reducers/authSlice';
 
