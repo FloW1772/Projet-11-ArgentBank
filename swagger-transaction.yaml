@@ -101,7 +101,7 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /transaction/all/{month}:
+  /transaction/all/{month}/{accountId}:
     get:
       tags:
         - Transaction Module
@@ -113,7 +113,7 @@ paths:
           description: Month for which transactions are to be retrieved
           required: true
           type: string
-        - in: query   # Modification du paramètre pour récupérer l'identifiant du compte
+        - in: path   # Modification du paramètre pour récupérer l'identifiant du compte
           name: accountId
           description: Identifier of the account
           required: true
@@ -144,6 +144,26 @@ paths:
       responses:
         '200':
           description: Transaction details retrieved successfully
+          schema:
+            $ref: '#/definitions/TransactionDetailsResponse'
+        '500':
+          description: Internal Server Error
+    post:
+      tags:
+        - Transaction Module
+      summary: Create Transaction Details
+      description: API to create details of a transaction
+      parameters:
+        - in: path
+          name: transactionId
+          description: ID of the transaction to create details
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transaction details created successfully
           schema:
             $ref: '#/definitions/TransactionDetailsResponse'
         '500':

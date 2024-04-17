@@ -11,6 +11,8 @@ function App() {
   const firstName = useSelector((state) => state.profile.firstName)
   const lastName = useSelector((state) => state.profile.lastName)
   const [newUserName, setNewUserName] = useState('')
+  const [errorNewUserName, setErrorNewUserName] = useState(false)
+
   useEffect(() => {
     const getUserAccount = async () => {
       try {
@@ -21,7 +23,6 @@ function App() {
           }
         });
         const userAccountJson = await response.json();
-        // console.log(userAccountJson)
         dispatch(addUserDatas(userAccountJson.body));
       } catch (error) {
         console.error(error);
@@ -31,37 +32,45 @@ function App() {
   }, []);
 
   const handleSubmit = async (event, newUserName) => {
-    console.log(userName)
-    console.log(newUserName)
-    event.preventDefault();
-    try {
-      const response = await fetch('http://localhost:3001/api/v1/user/profile', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          userName: newUserName,
-        })
-      });
-      const updatedUserData = await response.json();
-      console.log(updatedUserData)
-      dispatch(editUserName(updatedUserData.body.userName));
-      setIsEditing(false);
-    } catch (error) {
-      console.error(error);
+    if (newUserName === '') {
+      setErrorNewUserName(true)
+      event.preventDefault();
+    } else {
+      setErrorNewUserName(false)
+      event.preventDefault();
+      try {
+        const response = await fetch('http://localhost:3001/api/v1/user/profile', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({
+            userName: newUserName,
+          })
+        });
+        const updatedUserData = await response.json();
+        console.log(updatedUserData)
+        dispatch(editUserName(updatedUserData.body.userName));
+        setIsEditing(false);
+      } catch (error) {
+        console.error(error);
+      }
+
     }
+
+
   };
 
   return (
     <main className="main bg-dark-new">
       <section className="header">
         <h1>
-        Welcome back <br />
+          Welcome back <br />
           {isEditing ? (
             <form className="user-edit-form" onSubmit={(e) => handleSubmit(e, newUserName)}>
               <input type="text" value={newUserName} placeholder="Surnom" onChange={(e) => setNewUserName(e.target.value)} />
+              {errorNewUserName === true ? (<><small className="error-message">Ce champ est requis !</small></>) : ''}
               <input type="text" value={firstName} placeholder="Prénom" className="non-cliquable" readOnly={true} />
               <input type="text" value={lastName} placeholder="Nom" className="non-cliquable" readOnly={true} />
               <button type="submit">Enregistrer</button>
