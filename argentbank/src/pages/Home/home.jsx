@@ -1,9 +1,9 @@
 import React from 'react';
 import './home.scss'
 import Feature from '../../components/feature/Feature';
-import featureImage from '../../assets/img/icon-chat.png'
-import featureMoney from '../../assets/img/icon-money.png'
-import featureSecurity from '../../assets/img/icon-security.png'
+import featureImage from '../../assets/img/icon-chat.webp'
+import featureMoney from '../../assets/img/icon-money.webp'
+import featureSecurity from '../../assets/img/icon-security.webp'
 
 export function Home() {
   return (
@@ -23,10 +23,10 @@ export function Home() {
         <Feature featureImg={featureImage} featureTitle='You are our #1 priority' featureText='Need to talk to a representative? You can get in touch through our
                 24/7 chat or through a phone call in less than 5 minutes.' />
 
-          <Feature featureImg={featureMoney} featureTitle='More savings means higher rates' featureText='The more you save with us, the higher your interest rate will be!' />
+        <Feature featureImg={featureMoney} featureTitle='More savings means higher rates' featureText='The more you save with us, the higher your interest rate will be!' />
 
 
-          <Feature featureImg={featureSecurity} featureTitle='Security you can trust' featureText='We use top of the line encryption to make sure your data and money
+        <Feature featureImg={featureSecurity} featureTitle='Security you can trust' featureText='We use top of the line encryption to make sure your data and money
                 is always safe.' />
       </section>
     </main>

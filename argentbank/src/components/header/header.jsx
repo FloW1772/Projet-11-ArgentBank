@@ -1,6 +1,6 @@
 import React from 'react';
 import './header.scss';
-import argentBankLogo from '../../assets/img/argentBankLogo.png';
+import argentBankLogo from '../../assets/img/argentBankLogo.webp';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
@@ -17,14 +17,14 @@ export function Header() {
     <div>
       <title>Argent Bank - Home Page</title>
       <nav className="main-nav">
-          <Link className="main-nav-logo" href="./index.html" to="/">
-            <img
-              className="main-nav-logo-image"
-              src={argentBankLogo}
-              alt="Argent Bank Logo"
-            />
-          </Link>
-          <h1 className="sr-only">Argent Bank</h1>
+        <Link className="main-nav-logo" href="./index.html" to="/">
+          <img
+            className="main-nav-logo-image"
+            src={argentBankLogo}
+            alt="Argent Bank Logo"
+          />
+        </Link>
+        <h1 className="sr-only">Argent Bank</h1>
         <div>
           {token ? (
             <>
